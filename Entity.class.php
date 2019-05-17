@@ -1,13 +1,11 @@
 <?PHP
 
 abstract class Entity {
-    protected $id; //null
-    protected $name; //null
+    protected $id = null;
+    protected $name = null;
 
     private function __construct()
     {
-        $this->id = $id;
-        $this->name = $name;
     }
 
     public function getId():int
