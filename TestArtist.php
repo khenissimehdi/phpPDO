@@ -2,28 +2,24 @@
 
 require_once("autoload.php");
 
-$p=new WebPage();
-$p->setTitle("TEST");
 
-$p->appendCssUrl("http://cutrona/css/styleTP.css") ;
-$artist = Artist::createFromId(15);
 $artists = Artist::getAll();
-
-
+$p = new WebPage('Artistes');
+$p->appendCssUrl('/css/style.css');
 $p->appendContent(<<<HTML
-<h1>TEST</h1>
-<h4>{$artist->getName()}</h4>
-<ol>
-
+    <h1>Artistes</h1>
+    <ul>
 HTML
 );
-for($i=0;$i<count($artists);$i++)
-{
-    $table = $artists[$i]->getName();
-    $p->appendContent("<li>".$table);
+
+foreach ($artists as $artist) {
+    $artistName = WebPage::escapeString($artist->getName());
+    $p->appendContent("<li><a href='Albums1.php?artiste={$artist->getId()}'>{$artistName}</a>\n");
 }
 
+$p->appendContent(<<<HTML
+    </ul>
+HTML
+);
 
-
-
-echo $p->toHtml();
+echo $p->toHTML();

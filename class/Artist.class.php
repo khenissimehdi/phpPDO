@@ -39,5 +39,8 @@ SQL
             return $artists;
 
     }
-
+    public function getAlbums():array
+    { 
+        return Album::getFromArtistId($this->getId());
+    }
 }

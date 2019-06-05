@@ -58,5 +58,9 @@ SQL
 
         return $stmt->fetchAll();
     }
+    public function getTrack()
+    {
+        return Track::getFromAlbumId($this->getId());
+    }
 
 }
